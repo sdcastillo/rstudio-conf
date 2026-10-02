@@ -1,0 +1,45 @@
+# SamWiki skin on the supported Cayman theme.
+# https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/adding-a-theme-to-your-github-pages-site-using-jekyll
+#
+# Pages publishing stays off until the repository owner enables it.
+
+title: rstudio::conf
+description: Talks, workshops, and source materials from rstudio::conf 2017 and 2018.
+remote_theme: pages-themes/cayman@v0.2.0
+plugins:
+  - jekyll-remote-theme
+show_downloads: false
+markdown: kramdown
+
+# GitHub Pages enables jekyll-optional-front-matter by default. Leaving it on
+# would render every Markdown file as a page and overwrite paired HTML
+# (Fruit for Thought's speaker.html is one case).
+optional_front_matter:
+  enabled: false
+
+# Jekyll skips underscore paths. Include matches the file's basename, not a
+# nested path, so these names are enough to publish the bookdown output and
+# the blogdown theme layouts that were checked in with the eight-ways talk.
+include:
+  - _book
+  - _bookdown.yml
+  - _build.sh
+  - _deploy.sh
+  - _output.yml
+  - _default
+
+# Blogdown demo sources whose front matter Liquid cannot publish as-is.
+# syllabus.md contains a Hugo shortcode. They remain in the git tree.
+exclude:
+  - 2018/R_Markdown_Eight_Ways--Mine_Cetinkaya_Rundel/04-blogdown/content/syllabus.md
+  - 2018/R_Markdown_Eight_Ways--Mine_Cetinkaya_Rundel/04-blogdown/content/policies.md
+
+defaults:
+  - scope:
+      path: "2017"
+    values:
+      layout: null
+  - scope:
+      path: "2018"
+    values:
+      layout: null
